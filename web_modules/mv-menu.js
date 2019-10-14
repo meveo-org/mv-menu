@@ -17,8 +17,10 @@ export class MvMenu extends LitElement {
     static get styles() {
         return css`
           :host {
-            font-family: Arial;
-            font-size: 10pt;
+            font-family: var(--font-family,Arial);
+            font-size: var(--font-size-m,10pt);
+            line-height: var(--line-height-s,1.625);
+            background: var(--p-color,#ffffff);
           }
           ul {
               margin: 0px;
@@ -27,12 +29,12 @@ export class MvMenu extends LitElement {
           li {
               padding: 1em;
               display: block;
-              padding: 6px;
-              color: #000000;
+              color: var(--on-p-color,#000000);
               text-decoration: none;
           }
           li:hover {
-            background: #eeeeee;
+            background: var(--pd-color,#eeeeee);
+            color: var(--on-pd-color,#111111);
           }
           .menu {
               display: flex;
@@ -54,7 +56,7 @@ export class MvMenu extends LitElement {
             flex-flow: column wrap;
             min-width: 100px;
             position: absolute;
-            background: #eeeeee;
+            background: var(--pd-color,#eeeeee);
             @media(max-width: 450px) {
               position: static;
             }
@@ -72,19 +74,19 @@ export class MvMenu extends LitElement {
           .level2 {
             top: 0px;
             left: 100%;
-            background: #dddddd;
+            background: var(--pl-color,#eeeeee);
+            color: var(--on-pl-color,#111111);
           }
           .level2:hover {
             top: 0px;
             left: 100%;
-            background: #cccccc;
+            background: var(--p-color,#ffffff);
+            color: var(--on-p-color,#111111);
           }
-
           .menuitem{
             display: flex;
             justify-content:space-between;
           }
-
           .text{
             padding-right:1em;
           }
@@ -119,7 +121,7 @@ export class MvMenu extends LitElement {
         if(this.action){
           eval(this.action);
         }
-        let event = new CustomEvent('mv-submenu-clicked', {
+        let event = new CustomEvent('submenu-clicked', {
           detail: {
             message: this.text
           }
@@ -151,7 +153,7 @@ export class MvMenu extends LitElement {
         this.submenus.map(
           (submenu)=>{
             //used a lambda to bind this
-            submenu.addEventListener('mv-submenu-clicked', (e)=>{this.submenuClicked(e)});
+            submenu.addEventListener('submenu-clicked', (e)=>{this.submenuClicked(e)});
           }
         )
       }

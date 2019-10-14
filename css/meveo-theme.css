@@ -1,0 +1,87 @@
+html {
+
+     /* Primary */
+     --p-color: #344955;
+     --pd-color: #232F34;
+     --pl-color: #4A6572;
+     --on-p-color: #e8eef1;
+     --on-pd-color: rgb(202, 213, 218);
+     --on-pl-color: rgb(255, 255, 255);
+
+     /* Accent */
+     --a-color: #F9AA33;
+     --ad-color: #E89313;
+     --al-color: #FFCA55;
+     --on-a-color: rgb(32, 31, 30);
+     --on-ad-color: rgb(2, 2, 2);
+     --on-al-color: rgb(58, 54, 47);
+
+     /* Semantic */
+     --success-color:rgb(92, 216, 133);
+     --warning-color:rgb(238, 133, 91);
+     --error-color:rgb(250, 52, 26);
+     --on-success-color:rgb(28, 29, 28);
+     --on-warning-color:rgb(53, 48, 46);
+     --on-error-color:rgb(248, 240, 239);
+
+     /* Neutral */
+     --n-color:rgb(105, 109, 110); 
+     --nd-color:rgb(71, 74, 75); 
+     --nl-color:rgb(173, 179, 180);
+
+     /* Background */
+     --b-color:rgb(255, 255, 255);
+     --s-color:rgb(248, 240, 239);
+
+
+     /* Data */
+     --cat-1-color:#2F8DFA;
+     --cat-2-color:#1FD0BF;
+     --cat-3-color:#EB648B;
+     --cat-4-color:#F8C753;
+     --cat-5-color:#EB7E30;
+     --cat-6-color:#A93790;
+     --cat-7-color:#049587;
+     --cat-8-color:#1553B6;
+     --cat-9-color:#55008C;
+     --cat-10-color:#8B572A;
+     
+     --seq-1-color:#DCEDC8;
+     --seq-2-color:#B2DDCC;
+     --seq-3-color:#75C6D1;
+     --seq-4-color:#42B3D5;
+     --seq-5-color:#3993C2;
+     --seq-6-color:#3073AE;
+     --seq-7-color:#27539B;
+     --seq-8-color:#1E3388;
+     --seq-9-color:#171E6D;
+     --seq-10-color:#10154C;
+     
+     --cat-1-color:#D5001A;
+     --cat-2-color:#FF6A00;
+     --cat-3-color:#B30949;
+     --cat-4-color:#FFD972;
+     --cat-5-color:#FFF5DA;
+     --cat-6-color:#74135B;
+     --cat-7-color:#B2DDCC;
+     --cat-8-color:#42B3D5;
+     --cat-9-color:#27539B;
+     --cat-10-color:#182276;
+
+    /* Typography */
+    /* Font families */
+    --font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    /* Font sizes */
+    --font-size-xxs: .75rem;
+    --font-size-xs: .8125rem;
+    --font-size-s: .875rem;
+    --font-size-m: 1rem;
+    --font-size-l: 1.125rem;
+    --font-size-xl: 1.375rem;
+    --font-size-xxl: 1.75rem;
+    --font-size-xxxl: 2.5rem;
+    /* Line heights */
+    --line-height-xs: 1.25;
+    --line-height-s: 1.375;
+    --line-height-m: 1.625;
+}
