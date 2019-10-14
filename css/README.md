@@ -19,7 +19,7 @@ When creating your color theme, [keep in the accessibility](https://webaim.org/)
 Some tools can help:  
 [contrast checker](https://webaim.org/resources/contrastchecker/)
 
-### Background colors
+### Element colors
 Primary colors : Essential set of brand colors it comes with dark, darkest and light, lightest variations  
 `p-color, pd-color, pdd-color, pl-color, pll-color`  
 (Secondary) Accent colors: Used to higlight information or actions  

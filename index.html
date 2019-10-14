@@ -10,6 +10,12 @@
   <title>mv-menu</title>
 
   <link rel="stylesheet" href="./css/meveo-theme.css"/>
+  <style>
+      #menu2 {
+        --p-color:#ffff00;
+        --on-p-color:#000044;
+      }
+  </style>
   <script type="module" src="./web_modules/mv-menu.js"></script>
 </head>
 
@@ -26,6 +32,47 @@
             <mv-menu text="-"></mv-menu>
         </mv-menu>
         <mv-menu text="Edit">
+            <mv-menu text="Undo" shortcut="Ctrl+U"  disabled=true action="alert('Undo')"></mv-menu>
+            <mv-menu text="Redo" shortcut="Ctrl+Y"  disabled=true action="alert('Redo')"></mv-menu>
+            <mv-menu text="-"></mv-menu>
+            <mv-menu text="Cut" shortcut="Ctrl+X"  action="alert('Cut')"></mv-menu>
+            <mv-menu text="Copy" shortcut="Ctrl+C"  action="alert('Copy')"></mv-menu>
+            <mv-menu text="Paste" shortcut="Ctrl+V" action="alert('Paste')"></mv-menu>
+            <mv-menu text="-"></mv-menu>
+            <mv-menu text="Align">
+                <mv-menu text="Left Align"></mv-menu>
+                <mv-menu text="Center"></mv-menu>
+                <mv-menu text="Right Align"></mv-menu>
+                <mv-menu text="-"></mv-menu>
+                <mv-menu text="Top Align"></mv-menu>
+                <mv-menu text="Middle"></mv-menu>
+                <mv-menu text="Bottom Align"></mv-menu>
+            </mv-menu>
+            <mv-menu text="-"></mv-menu>
+            <mv-menu text="Distribute">
+                <mv-menu text="Horizontal"></mv-menu>
+                <mv-menu text="Vertical"></mv-menu>
+            </mv-menu>
+        </mv-menu>
+        <mv-menu text="Help">
+            <mv-menu text="Welcome"></mv-menu>
+            <mv-menu text="Help"></mv-menu>
+            <mv-menu text="About"></mv-menu>
+        </mv-menu>
+    </mv-menu>
+
+    <h1>Overriden theme variable</h1>
+    <mv-menu style="--p-color:#ff0000">
+        <mv-menu text="File">
+            <mv-menu text="New File" shortcut="Ctrl+Shift+N"></mv-menu>
+            <mv-menu text="Open File" shortcut="Ctrl+O"></mv-menu>
+            <mv-menu text="Save">
+                <mv-menu text="Save File" shortcut="Ctrl+S"></mv-menu>
+                <mv-menu text="Auto Save" checked=true disabled=true></mv-menu>
+            </mv-menu>
+            <mv-menu text="-"></mv-menu>
+        </mv-menu>
+        <mv-menu  id="menu2" text="Edit">
             <mv-menu text="Undo" shortcut="Ctrl+U"  disabled=true action="alert('Undo')"></mv-menu>
             <mv-menu text="Redo" shortcut="Ctrl+Y"  disabled=true action="alert('Redo')"></mv-menu>
             <mv-menu text="-"></mv-menu>
