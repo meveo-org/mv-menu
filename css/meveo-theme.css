@@ -3,17 +3,25 @@ html {
      /* Primary */
      --p-color: #344955;
      --pd-color: #232F34;
+     --pdd-color: rgb(22, 29, 32);
      --pl-color: #4A6572;
+     --pll-color: rgb(110, 140, 155);
      --on-p-color: #e8eef1;
      --on-pd-color: rgb(202, 213, 218);
-     --on-pl-color: rgb(255, 255, 255);
+     --on-pdd-color: rgb(202, 213, 218);
+     --on-pl-color: rgb(187, 187, 187);
+     --on-pll-color: rgb(255, 255, 255);
 
      /* Accent */
      --a-color: #F9AA33;
      --ad-color: #E89313;
+     --add-color: rgb(194, 123, 18);
      --al-color: #FFCA55;
+     --all-color : rgb(253, 215, 133);
      --on-a-color: rgb(32, 31, 30);
      --on-ad-color: rgb(2, 2, 2);
+     --on-add-color: rgb(0, 0, 0);
+     --on-al-color: rgb(37, 34, 27);
      --on-al-color: rgb(58, 54, 47);
 
      /* Semantic */

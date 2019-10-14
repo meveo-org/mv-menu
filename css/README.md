@@ -20,10 +20,10 @@ Some tools can help:
 [contrast checker](https://webaim.org/resources/contrastchecker/)
 
 ### Background colors
-Primary colors : Essential set of brand colors it comes with dark and light variation  
-`p-color, pd-color, pl-color`  
+Primary colors : Essential set of brand colors it comes with dark, darkest and light, lightest variations  
+`p-color, pd-color, pdd-color, pl-color, pll-color`  
 (Secondary) Accent colors: Used to higlight information or actions  
-`a-color,ad-color,al-color`  
+`a-color,ad-color, add-color, al-color, all-color`  
 Semantic colors : Used for success, warning, errors for back ground and text  
 `success-color, warning-color, error-color`  
 Background colors : Used for background and surface
@@ -40,8 +40,8 @@ Data colors : Used in charts, 3 paletes categorical, sequential, polarize
 The text colors are univoquely associated to the background on which they are supposed to appear  
 Their css variable name is simply the background color name prefixed by "on-", except for neutral palette  
 that is used by component on which we are not supposed to write text.  
-`on-p-color, on-pd-color, on-pl-color`  
-`on-a-color, on-ad-color, on-al-color`  
+`on-p-color, on-pd-color, on-pdd-color, on-pl-color, on-pll-color`  
+`on-a-color, on-ad-color, on-add-color, on-al-color, on-all-color`  
 `on-success-color, on-warning-color, on-error-color`  
 `on-cat-1-color, on-cat-2-color,..., on-cat-12-color`  
 `on-seq-1-color, on-seq-2-color,..., on-seq-12-color`  
