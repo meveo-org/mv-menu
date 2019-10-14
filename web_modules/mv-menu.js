@@ -1,5 +1,4 @@
-import { LitElement,html,css} from './lit-element.js';
-export * from './lit-element.js';
+import { LitElement,html,css} from 'https://cdn.jsdelivr.net/gh/manaty/mv-dependencies@master/web_modules/lit-element.js';
 
 export class MvMenu extends LitElement {
 

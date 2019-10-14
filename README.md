@@ -1,6 +1,6 @@
 # mv-menu
 
- MvMenu is a Meveo menu component (based on lit-element) that provide menu with sub menus.
+ MvMenu is a Meveo menu component (based on lit-element) that provides menu with sub menus.
 
 ## Features
 * Arbitrary sub-menu levels
@@ -16,7 +16,10 @@ To experiment with the MvMenu component.
 
 2. Serve the project from the root directory with some http server (best served with meveo itself) 
 
-5. Update the menu in the index.html file     
+3. Update the menu in the index.html file     
+
+
+You can also check this [demo](https://manaty.net/mv-menu/)
 
 
 ## Acknowledgements
