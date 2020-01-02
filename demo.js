@@ -46,10 +46,17 @@ export class MvMenuDemo extends LitElement {
       .notification-menu {
         height: 95px;
         width: 756px;
-        background: var(--p-color);
+        background: #3F4753;
         display: flex;
         align-items: center;
         justify-content: center;
+      }
+      
+      .footer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     `;
   }
@@ -109,7 +116,7 @@ export class MvMenuDemo extends LitElement {
                       <mv-fa icon="caret-down"></mv-fa>
                     </div>
                 </span>
-                <mv-menu text="Profile Setttings" action="alert('Undo')"></mv-menu>
+                <mv-menu text="Profile Setttings" @submenu-clicked="${this.clickLink}"></mv-menu>
                 <mv-menu text="Log Out"></mv-menu>
             </mv-menu>
           </mv-menu>
@@ -121,6 +128,9 @@ export class MvMenuDemo extends LitElement {
                 <span slot="title">
                     <mv-fa icon="bell"></mv-fa>
                 </span>
+                <span slot="footer">
+                    <span class="footer">View all</span>
+                </span>
                 <mv-menu text="New File" shortcut="Ctrl+Shift+N" action="alert('Undo')"></mv-menu>
                 <mv-menu text="Log Out"></mv-menu>
             </mv-menu>
@@ -128,6 +138,10 @@ export class MvMenuDemo extends LitElement {
         </div>
     </div>
     `;
+  }
+
+  clickLink() {
+    window.open("https://github.com/meveo-frontend", '_blank');
   }
 }
 

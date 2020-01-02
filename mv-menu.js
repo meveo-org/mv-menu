@@ -16,6 +16,7 @@ export class MvMenu extends LitElement {
       type: { type: String, attribute: true },
       parentType: { type: String, attribute: true },
       title: { type: String, attribute: true },
+      showFooter: { type: Boolean, attribute: true }
     };
   }
 
@@ -112,52 +113,62 @@ export class MvMenu extends LitElement {
     }
     
     .sublevel.dropdown {
-      height: 41px;
+      height: var(--mv-dropdown-sublevel-height, 41px);
       padding: 0 10px;
-      line-height: 41px;
+      line-height: var(--mv-dropdown-sublevel-height, 41px);
+      background-color: var(--mv-dropdown-background-color, #3F4753);
+    }
+    
+    .sublevel.dropdown:hover {
+      background-color: var(--mv-dropdown-hover-background-color, #353F4D);
     }
     
     .level.dropdown {
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-      height: 95px;
-      width: 265px;
+      height: var(--mv-dropdown-level-height, 95px);
+      width: var(--mv-dropdown-level-width, 265px);
       cursor: pointer;
       position: relative;
       padding: 0 20px;
       display: flex;
       align-items: center;
+      background-color: var(--mv-dropdown-background-color, #3F4753);
+    }
+    
+    .level.dropdown:hover {
+      background-color: var(--mv-dropdown-hover-background-color, #353F4D);
     }
     
     .level.dropdown > ul {
-      width: 198px !important;
+      width: var(--mv-dropdown-sublevel-width, 198px) !important;
       border-radius: 5px;
-      color: #FFFFFF;
       padding: 0;
-      border: 1px solid #1E3843;
+      border: 1px solid var(--mv-dropdown-hover-background-color, #353F4D);
       box-shadow: 0 0 20px 1px rgba(93, 94, 07, 0.35);
       z-index: 101;
       position: absolute;
-      top: 100px;
-      left: 0;
+      top: var(--mv-dropdown-sublevel-position-top, 100px);
+      left: var(--mv-dropdown-sublevel-position-left, 0px);
     }
     
     .level.notification {
       box-sizing: border-box;
       -moz-box-sizing: border-box;
       -webkit-box-sizing: border-box;
-      width: 48px;
-      height: 48px;
+      width: var(--mv-notification-level-size, 48px);
+      height: var(--mv-notification-level-size, 48px);
       border-radius: 24px;
       background-color: var(--p-color,#ffffff);
       display: flex;
       margin: auto;
       position: relative;
+      background-color: var(--mv-notification-button-background-color, #3F4753);
     }
     
     .level.notification:hover {
-      background: var(--pd-color,#eeeeee);
+      background-color: var(--mv-notification-button-hover-background-color, #353F4D);
       cursor: pointer;
     }
     
@@ -170,37 +181,35 @@ export class MvMenu extends LitElement {
     }
     
     .level.notification > ul {
-      height: 400px;
-      width: 756px !important;
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      height: var(--mv-notification-sublevel-height, 400px);
+      width: var(--mv-notification-sublevel-width, 756px) !important;
       border-radius: 5px;
-      color: #FFFFFF;
       padding: 0;
-      border: 1px solid #1E3843;
       box-shadow: 0 0 20px 1px rgba(93, 94, 07, 0.35);
       z-index: 101;
       position: absolute;
-      top: 100px;
-      left: -375px;
+      top: var(--mv-dropdown-sublevel-position-top, 80px);
+      left: var(--mv-dropdown-sublevel-position-left, -375px);
     }
     
     .sublevel.notification {
       display: none;
     }
     
-    .header {
-      box-shadow: 0 5px 10px 0 rgba(7, 17, 26, 0.2);
-      height: 60px;
-      position: relative;
-    }
-    
     .wrap-notification {
       width: 100%;
       height: 100%;
+      cursor: default;
+      box-shadow: 0 0 15px 1px rgba(151, 156, 163, 1);
+      border-radius: 5px;
     }
     
     .title {
       font-size: 20px;
-      color: #FFFFFF;
+      color: var(--mv-notification-title-color, #FFFFFF);
       font-weight: 500;
       position: absolute;
       left: 30px;
@@ -208,12 +217,52 @@ export class MvMenu extends LitElement {
       transform: translateY(-50%);
       cursor: default;
     }
+    
+    .header {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      height: 60px;
+      position: relative;
+      background-color: var(--mv-notification-background-color, #3F4753);
+      box-shadow: 0 5px 10px 0 rgba(7, 17, 26, 0.2); 
+      z-index: 1;
+      border-radius: 5px 5px 0 0;
+    }
+    
+    .footer {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      border-top: 1px solid #B0B3B6;
+      height: 55px;
+      position: relative;
+      background-color: var(--mv-notification-background-color, #3F4753);
+      border-radius: 0 0 5px 5px;
+    }
+    
+    .body {
+      box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      height: calc(var(--mv-notification-sublevel-height, 400px) - 60px);
+      position: relative;
+      background-color: var(--mv-notification-background-color, #3F4753);
+      border-radius: 0 0 5px 5px;
+    }
+    
+    .wrap-notification[showFooter] .body {
+      height: calc(var(--mv-notification-sublevel-height, 400px) - 115px);
+      position: relative;
+      border-radius: 0;
+    }
  `;
 
   constructor() {
     super();
     this.type = "default";
     this.title = "Notifications";
+    this.showFooter = true;
   }
 
   render() {
@@ -233,16 +282,18 @@ export class MvMenu extends LitElement {
             </span>
             <ul class="submenu ${this.isOpen ? 'is-open' : ''}">
             ${isNotification
-                ? html`<div class="wrap-notification" @click=${this.stopImmediatePropagation}>
+                ? html`<div class="wrap-notification" @click=${this.stopImmediatePropagation} ?showFooter="${this.showFooter}">
                             <div class="header">
                                 <slot name="header"><div class="title">${this.title}</div></slot>
                             </div>
                             <div class="body">
                                 <slot name="body"></slot>
                             </div>
-                            <div class="footer">
-                                <slot name="footer"></slot>
-                            </div>
+                            ${this.showFooter
+                              ? html`<div class="footer">
+                                        <slot name="footer"></slot>
+                                    </div>`
+                              : html``}
                        </div>`
                 : html``}
               <slot></slot>
@@ -284,7 +335,6 @@ export class MvMenu extends LitElement {
 
   clicked(e) {
     if (!this.isRoot) {
-      console.log('clicked ' + this.text);
       if (this.hasChildren) {
         e.stopImmediatePropagation();
         this.isOpen = !this.isOpen;
@@ -304,7 +354,6 @@ export class MvMenu extends LitElement {
   //called if a sub menu has been clicked
   submenuClicked(e) {
     //we then close all other submenus
-    console.log('On menu ' + this.text + ' submenu clicked ' + e.detail.message);
     this.submenus.map(
       (submenu) => {
         if (submenu.text != e.detail.message && submenu.isOpen) {
