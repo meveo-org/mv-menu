@@ -22,27 +22,27 @@ export class MvMenu extends LitElement {
 
   static styles = css`
     :host {
-      font-family: var(--font-family,Arial);
-      font-size: var(--font-size-m,10pt);
-      line-height: var(--line-height-s,1.625);
-      background: var(--p-color,#ffffff);
+      font-family: var(--font-family, Arial);
+      font-size: var(--font-size-m, 10pt);
+      line-height: var(--line-height-s, 1.625);
+      background: var(--p-color, #ffffff);
     }
           
     ul {
       margin: 0px;
-      list-style:none;
+      list-style: none;
     }
           
     li {
       padding: 1em;
       display: block;
-      color: var(--on-p-color,#000000);
+      color: var(--on-p-color, #000000);
       text-decoration: none;
     }
           
     li:hover {
-      background: var(--pd-color,#eeeeee);
-      color: var(--on-pd-color,#111111);
+      background: var(--pd-color, #eeeeee);
+      color: var(--on-pd-color, #111111);
     }
           
     .menu {
@@ -69,7 +69,7 @@ export class MvMenu extends LitElement {
       flex-flow: column wrap;
       min-width: 100px;
       position: absolute;
-      background: var(--pd-color,#eeeeee);
+      background: var(--pd-color, #eeeeee);
       
       @media(max-width: 450px) {
         position: static;
@@ -77,12 +77,12 @@ export class MvMenu extends LitElement {
     }
           
     .submenu.is-open {
-      display: flex!important;
+      display: flex !important;
     }
           
     .submenu span {
       text-align: left;
-      color:white;
+      color: white;
       
       @media(max-width: 450px) {
         text-align: center;
@@ -92,24 +92,24 @@ export class MvMenu extends LitElement {
     .level2 {
       top: 0px;
       left: 100%;
-      background: var(--pl-color,#eeeeee);
-      color: var(--on-pl-color,#111111);
+      background: var(--pl-color, #eeeeee);
+      color: var(--on-pl-color, #111111);
     }
           
     .level2:hover {
       top: 0px;
       left: 100%;
-      background: var(--p-color,#ffffff);
-      color: var(--on-p-color,#111111);
+      background: var(--p-color, #ffffff);
+      color: var(--on-p-color, #111111);
     }
           
     .menuitem {
       display: flex;
-      justify-content:space-between;
+      justify-content: space-between;
     }
           
     .text{
-      padding-right:1em;
+      padding-right: 1em;
     }
     
     .sublevel.dropdown {
@@ -160,7 +160,7 @@ export class MvMenu extends LitElement {
       width: var(--mv-notification-level-size, 48px);
       height: var(--mv-notification-level-size, 48px);
       border-radius: 24px;
-      background-color: var(--p-color,#ffffff);
+      background-color: var(--p-color, #ffffff);
       display: flex;
       margin: auto;
       position: relative;
@@ -280,7 +280,7 @@ export class MvMenu extends LitElement {
               <span class="text">${this.text}</span>
               <span class="shortCut">${this.shortCut}</span>
             </span>
-            <ul class="submenu ${this.isOpen ? 'is-open' : ''}">
+            <ul class="submenu ${this.isOpen ? "is-open" : ""}">
             ${isNotification
                 ? html`<div class="wrap-notification" @click=${this.stopImmediatePropagation} ?showFooter="${this.showFooter}">
                             <div class="header">
@@ -315,7 +315,7 @@ export class MvMenu extends LitElement {
     this.level = 0;
     this.submenus = [];
     this.hasChildren = false;
-    this.isRoot = (this.text == undefined);
+    this.isRoot = (this.text === undefined);
     if (!this.isRoot) {
       this.level = this.parentNode.registerChild(this);
       this.hasChildren = this.children.length > 0;
@@ -329,62 +329,60 @@ export class MvMenu extends LitElement {
         this.type = this.parentNode.parentType;
       }
     }
-    document.addEventListener('click', this.handleClickAway);
+    document.addEventListener("click", this.handleClickAway);
     super.connectedCallback();
   }
 
-  clicked(e) {
+  detachedCallback() {
+    document.removeEventListener("click", this.handleClickAway);
+    super.detachedCallback();
+  }
+
+  firstUpdated(changedProperties) {
+    if (this.isRoot || this.hasChildren) {
+      this.submenus.map(
+          (submenu) => {
+            //used a lambda to bind this
+            submenu.addEventListener("submenu-clicked", (event) => {
+              this.submenuClicked(event);
+            });
+          },
+      );
+    }
+  }
+
+  clicked(event) {
     if (!this.isRoot) {
       if (this.hasChildren) {
-        e.stopImmediatePropagation();
+        event.stopImmediatePropagation();
         this.isOpen = !this.isOpen;
       }
       if (this.action) {
         eval(this.action);
       }
-      let event = new CustomEvent('submenu-clicked', {
-        detail: {
-          message: this.text,
-        },
+      let submenuEvent = new CustomEvent("submenu-clicked", {
+        detail: { message: this.text }
       });
-      this.dispatchEvent(event);
+      this.dispatchEvent(submenuEvent);
     }
   }
 
   //called if a sub menu has been clicked
-  submenuClicked(e) {
+  submenuClicked(event) {
     //we then close all other submenus
     this.submenus.map(
       (submenu) => {
-        if (submenu.text != e.detail.message && submenu.isOpen) {
+        if ((submenu.text !== event.detail.message) && submenu.isOpen) {
           submenu.isOpen = false;
         }
       });
-    e.stopImmediatePropagation();
+    event.stopImmediatePropagation();
   }
 
   //the submenus register themself to there parent using this method
   registerChild(submenu) {
     this.submenus.push(submenu);
     return this.level + 1;
-  }
-
-  firstUpdated(changedProperties) {
-    if (this.isRoot || this.hasChildren) {
-      this.submenus.map(
-        (submenu) => {
-          //used a lambda to bind this
-          submenu.addEventListener('submenu-clicked', (e) => {
-            this.submenuClicked(e);
-          });
-        },
-      );
-    }
-  }
-
-  detachedCallback() {
-    document.removeEventListener('click', this.handleClickAway);
-    super.detachedCallback();
   }
 
   handleClickAway = event => {
@@ -400,4 +398,4 @@ export class MvMenu extends LitElement {
   }
 }
 
-customElements.define('mv-menu', MvMenu);
+customElements.define("mv-menu", MvMenu);

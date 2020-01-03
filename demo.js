@@ -141,7 +141,7 @@ export class MvMenuDemo extends LitElement {
   }
 
   clickLink() {
-    window.open("https://github.com/meveo-frontend", '_blank');
+    window.open("https://github.com/meveo-frontend", "_blank");
   }
 }
 
