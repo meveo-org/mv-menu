@@ -1,7 +1,6 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html, css } from "lit-element";
 
 export class MvMenu extends LitElement {
-
   static get properties() {
     return {
       text: { type: String, attribute: true },
@@ -266,41 +265,54 @@ export class MvMenu extends LitElement {
   }
 
   render() {
-    const isDropdownOrNotification = ["dropdown", "notification"].includes(this.type);
+    const isDropdownOrNotification = ["dropdown", "notification"].includes(
+      this.type
+    );
     const isNotification = this.type === "notification";
     if (this.isRoot) {
-      return html `<ul class="menu"><slot></slot></ul>`;
+      return html`<ul class="menu"><slot></slot></ul>`;
     } else if (this.hasChildren) {
-      return html `
-         <li class="level${this.level} level ${this.type}" @click=${this.clicked}>
-            <span class="menuitem">
-              ${isDropdownOrNotification
-                ? html`<slot name="title"></slot>`
-                : html``}  
-              <span class="text">${this.text}</span>
-              <span class="shortCut">${this.shortCut}</span>
-            </span>
-            <ul class="submenu ${this.isOpen ? "is-open" : ""}">
-            ${isNotification
-                ? html`<div class="wrap-notification" @click=${this.stopImmediatePropagation} ?showFooter="${this.showFooter}">
-                            <div class="header">
-                                <slot name="header"><div class="title">${this.title}</div></slot>
-                            </div>
-                            <div class="body">
-                                <slot name="body"></slot>
-                            </div>
-                            ${this.showFooter
-                              ? html`<div class="footer">
-                                        <slot name="footer"></slot>
-                                    </div>`
-                              : html``}
-                       </div>`
-                : html``}
-              <slot></slot>
-            </ul>
-         </li>`;
+      return html`
+        <li
+          class="level${this.level} level ${this.type}"
+          @click=${this.clicked}
+        >
+          <span class="menuitem">
+            ${isDropdownOrNotification
+              ? html`<slot name="title"></slot>`
+              : html``}  
+            <span class="text">${this.text}</span>
+            <span class="shortCut">${this.shortCut}</span>
+          </span>
+          <ul class="submenu ${this.isOpen ? "is-open" : ""}">
+          ${isNotification
+            ? html`
+              <div
+                class="wrap-notification"
+                @click=${this.stopImmediatePropagation}
+                ?showFooter="${this.showFooter}"
+              >
+                <div class="header">
+                  <slot name="header">
+                    <div class="title">${this.title}</div>
+                  </slot>
+                </div>
+                <div class="body">
+                  <slot name="body"></slot>
+                </div>
+                ${this.showFooter
+                  ? html`
+                    <div class="footer">
+                      <slot name="footer"></slot>
+                    </div>`
+                  : html``}
+                </div>`
+            : html``}
+            <slot></slot>
+          </ul>
+        </li>`;
     } else {
-      return html `
+      return html`
          <li @click=${this.clicked} class="sublevel ${this.type}">
             <span class="menuitem">
               <span class="text">${this.text}</span>
@@ -315,7 +327,7 @@ export class MvMenu extends LitElement {
     this.level = 0;
     this.submenus = [];
     this.hasChildren = false;
-    this.isRoot = (this.text === undefined);
+    this.isRoot = this.text === undefined;
     if (!this.isRoot) {
       this.level = this.parentNode.registerChild(this);
       this.hasChildren = this.children.length > 0;
@@ -340,18 +352,14 @@ export class MvMenu extends LitElement {
 
   firstUpdated(changedProperties) {
     if (this.isRoot || this.hasChildren) {
-      this.submenus.map(
-          (submenu) => {
-            //used a lambda to bind this
-            submenu.addEventListener("submenu-clicked", (event) => {
-              this.submenuClicked(event);
-            });
-          },
-      );
+      this.submenus.map(submenu => {
+        //used a lambda to bind this
+        submenu.addEventListener("submenu-clicked", this.submenuClicked);
+      });
     }
   }
 
-  clicked(event) {
+  clicked = event => {
     if (!this.isRoot) {
       if (this.hasChildren) {
         event.stopImmediatePropagation();
@@ -365,25 +373,24 @@ export class MvMenu extends LitElement {
       });
       this.dispatchEvent(submenuEvent);
     }
-  }
+  };
 
   //called if a sub menu has been clicked
-  submenuClicked(event) {
+  submenuClicked = event => {
     //we then close all other submenus
-    this.submenus.map(
-      (submenu) => {
-        if ((submenu.text !== event.detail.message) && submenu.isOpen) {
-          submenu.isOpen = false;
-        }
-      });
+    this.submenus.map(submenu => {
+      if (submenu.text !== event.detail.message && submenu.isOpen) {
+        submenu.isOpen = false;
+      }
+    });
     event.stopImmediatePropagation();
-  }
+  };
 
   //the submenus register themself to there parent using this method
-  registerChild(submenu) {
+  registerChild = submenu => {
     this.submenus.push(submenu);
     return this.level + 1;
-  }
+  };
 
   handleClickAway = event => {
     const { path } = event;
