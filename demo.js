@@ -1,6 +1,5 @@
 import { LitElement, html, css } from "lit-element";
 import "./mv-menu.js";
-import "mv-font-awesome";
 
 export class MvMenuDemo extends LitElement {
   static get properties() {
@@ -116,7 +115,10 @@ export class MvMenuDemo extends LitElement {
                       <mv-fa icon="caret-down"></mv-fa>
                     </div>
                 </span>
-                <mv-menu text="Profile Setttings" @submenu-clicked="${this.clickLink}"></mv-menu>
+                <mv-menu
+                  text="Profile Setttings"
+                  @submenu-clicked="${this.clickLink}"
+                ></mv-menu>
                 <mv-menu text="Log Out"></mv-menu>
             </mv-menu>
           </mv-menu>
