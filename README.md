@@ -7,7 +7,10 @@
 * Shortcut text
 * Written in vanila javascript 
 
+## Dependencies
 
+- [mv-click-away](https://github.com/meveo-frontend/mv-click-away)
+- 
 ## Quick Start
 
 To experiment with the MvMenu component.   
