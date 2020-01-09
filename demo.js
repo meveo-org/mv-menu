@@ -20,6 +20,7 @@ export class MvMenuDemo extends LitElement {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        width: 1600px;
       }
       
       .avatar {
