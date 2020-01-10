@@ -28,42 +28,42 @@ export class MvMenu extends LitElement {
         line-height: var(--line-height-s, 1.625);
         background: var(--p-color, #ffffff);
       }
-            
+
       ul {
         margin: 0px;
         list-style: none;
       }
-            
+
       li {
         padding: 1em;
         display: block;
         color: var(--on-p-color, #000000);
         text-decoration: none;
       }
-            
+
       li:hover {
         background: var(--pd-color, #eeeeee);
         color: var(--on-pd-color, #111111);
       }
-            
+
       .menu {
         display: flex;
         flex-direction : row;
         justify-content: left;
-        
+
         @media(max-width: 450px) {
           flex-flow: column wrap;
         }
       }
-            
+
       .level1 {
         position: relative;
       }
-            
+
       .level1:hover > .sous-menu {
         display: flex;
       }
-            
+
       .submenu {
         display: none;
         top: 2em;
@@ -71,59 +71,59 @@ export class MvMenu extends LitElement {
         min-width: 100px;
         position: absolute;
         background: var(--pd-color, #eeeeee);
-        
+
         @media(max-width: 450px) {
           position: static;
         }
       }
-            
+
       .submenu.is-open {
         display: flex !important;
       }
-            
+
       .submenu span {
         text-align: left;
         color: white;
-        
+
         @media(max-width: 450px) {
           text-align: center;
         }
       }
-            
+
       .level2 {
         top: 0px;
         left: 100%;
         background: var(--pl-color, #eeeeee);
         color: var(--on-pl-color, #111111);
       }
-            
+
       .level2:hover {
         top: 0px;
         left: 100%;
         background: var(--p-color, #ffffff);
         color: var(--on-p-color, #111111);
       }
-            
+
       .menuitem {
         display: flex;
         justify-content: space-between;
       }
-            
+
       .text{
         padding-right: 1em;
       }
-      
+
       .sublevel.dropdown {
         height: var(--mv-dropdown-sublevel-height, 41px);
         padding: 0 10px;
         line-height: var(--mv-dropdown-sublevel-height, 41px);
         background-color: var(--mv-dropdown-background-color, #3F4753);
       }
-      
+
       .sublevel.dropdown:hover {
         background-color: var(--mv-dropdown-hover-background-color, #353F4D);
       }
-      
+
       .level.dropdown {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -137,11 +137,11 @@ export class MvMenu extends LitElement {
         align-items: center;
         background-color: var(--mv-dropdown-background-color, #3F4753);
       }
-      
+
       .level.dropdown:hover {
         background-color: var(--mv-dropdown-hover-background-color, #353F4D);
       }
-      
+
       .level.dropdown > ul {
         width: var(--mv-dropdown-sublevel-width, 198px) !important;
         border-radius: 5px;
@@ -153,7 +153,7 @@ export class MvMenu extends LitElement {
         top: var(--mv-dropdown-sublevel-position-top, 100px);
         left: var(--mv-dropdown-sublevel-position-left, 0px);
       }
-      
+
       .level.notification {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -167,20 +167,20 @@ export class MvMenu extends LitElement {
         position: relative;
         background-color: var(--mv-notification-button-background-color, #3F4753);
       }
-      
+
       .level.notification:hover {
         background-color: var(--mv-notification-button-hover-background-color, #353F4D);
         cursor: pointer;
       }
-      
+
       .level.notification .text {
         display: none;
       }
-      
+
       .level.dropdown .text {
         display: none;
       }
-      
+
       .level.notification > ul {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -195,11 +195,11 @@ export class MvMenu extends LitElement {
         top: var(--mv-dropdown-sublevel-position-top, 80px);
         left: var(--mv-dropdown-sublevel-position-left, -375px);
       }
-      
+
       .sublevel.notification {
         display: none;
       }
-      
+
       .wrap-notification {
         width: 100%;
         height: 100%;
@@ -207,9 +207,9 @@ export class MvMenu extends LitElement {
         box-shadow: 0 0 15px 1px rgba(151, 156, 163, 1);
         border-radius: 5px;
       }
-      
+
       .title {
-        font-size: 20px;
+        font-size: --font-size-xl;
         color: var(--mv-notification-title-color, #FFFFFF);
         font-weight: 500;
         position: absolute;
@@ -218,7 +218,7 @@ export class MvMenu extends LitElement {
         transform: translateY(-50%);
         cursor: default;
       }
-      
+
       .header {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -226,11 +226,11 @@ export class MvMenu extends LitElement {
         height: 60px;
         position: relative;
         background-color: var(--mv-notification-background-color, #3F4753);
-        box-shadow: 0 5px 10px 0 rgba(7, 17, 26, 0.2); 
+        box-shadow: 0 5px 10px 0 rgba(7, 17, 26, 0.2);
         z-index: 1;
         border-radius: 5px 5px 0 0;
       }
-      
+
       .footer {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -241,7 +241,7 @@ export class MvMenu extends LitElement {
         background-color: var(--mv-notification-background-color, #3F4753);
         border-radius: 0 0 5px 5px;
       }
-      
+
       .body {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -251,7 +251,7 @@ export class MvMenu extends LitElement {
         background-color: var(--mv-notification-background-color, #3F4753);
         border-radius: 0 0 5px 5px;
       }
-      
+
       .wrap-notification[showFooter] .body {
         height: calc(var(--mv-notification-sublevel-height, 400px) - 115px);
         position: relative;
@@ -287,7 +287,7 @@ export class MvMenu extends LitElement {
           <span class="menuitem">
             ${isDropdownOrNotification
               ? html`<slot name="title"></slot>`
-              : html``}  
+              : html``}
             <span class="text">${this.text}</span>
             <span class="shortCut">${this.shortCut}</span>
           </span>
