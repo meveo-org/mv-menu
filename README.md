@@ -9,7 +9,7 @@
 
 ## Dependencies
 
-- [mv-click-away](https://github.com/meveo-frontend/mv-click-away)
+- [mv-click-away](https://github.com/meveo-org/mv-click-away)
 - 
 ## Quick Start
 
@@ -22,7 +22,7 @@ To experiment with the MvMenu component.
 3. Update the menu in the index.html file     
 
 
-You can also check this [demo](https://manaty.net/mv-menu/)
+You can also check this [demo](https://front.meveo.org/mv-menu/)
 
 
 ## Acknowledgements
