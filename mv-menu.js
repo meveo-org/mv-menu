@@ -275,6 +275,17 @@ export class MvMenu extends LitElement {
         position: relative;
         border-radius: 0;
       }
+      
+      .level.default .submenu {
+        margin-top: 22px;
+        margin-left: 193px;
+        min-width: 210px !important;
+        max-width: 210px;
+      }
+      
+      .level1.default .submenu {
+        margin-left: 0px;
+      }
   `;
   }
 
