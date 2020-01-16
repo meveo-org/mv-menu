@@ -133,8 +133,6 @@ export class MvMenuDemo extends LitElement {
                 <span slot="footer">
                     <span class="footer">View all</span>
                 </span>
-                <mv-menu text="New File" shortcut="Ctrl+Shift+N" action="alert('Undo')"></mv-menu>
-                <mv-menu text="Log Out"></mv-menu>
             </mv-menu>
           </mv-menu>
         </div>
