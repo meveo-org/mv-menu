@@ -27,6 +27,7 @@ export class MvMenu extends LitElement {
         font-size: var(--font-size-m, 10pt);
         line-height: var(--line-height-s, 1.625);
         background: var(--p-color, #ffffff);
+        --border: var(--mv-menu-border, none);
         
         --dropdown-sublevel-height: var(--mv-dropdown-sublevel-height, 41px);
         --dropdown-sublevel-width: var(--mv-dropdown-sublevel-width, 198px);
@@ -43,14 +44,15 @@ export class MvMenu extends LitElement {
         --notification-sublevel-height: var(--mv-notification-sublevel-height, 400px);
         --notification-sublevel-width: var(--mv-notification-sublevel-width, 756px);
         --notification-sublevel-position-top: var(--mv-notification-sublevel-position-top, 80px);
-        --notification-sublevel-position-left: var(--mv-notification-sublevel-position-left, -375px);
-        --notification-title-color: var(--mv-notification-title-color, #FFFFFF);
+        --notification-sublevel-position-left: var(--mv-notification-sublevel-position-left, -355px);
+        --notification-color: var(--mv-notification-color, #FFFFFF);
         --notification-background-color: var(--mv-notification-background-color, #3F4753);
       }
 
       ul {
         margin: 0px;
         list-style: none;
+        border: var(--border);
       }
 
       li {
@@ -69,6 +71,7 @@ export class MvMenu extends LitElement {
         display: flex;
         flex-direction : row;
         justify-content: left;
+        padding: 0;
 
         @media(max-width: 450px) {
           flex-flow: column wrap;
@@ -119,8 +122,6 @@ export class MvMenu extends LitElement {
       .level2:hover {
         top: 0px;
         left: 100%;
-        background: var(--p-color, #ffffff);
-        color: var(--on-p-color, #111111);
       }
 
       .menuitem {
@@ -137,10 +138,12 @@ export class MvMenu extends LitElement {
         padding: 0 10px;
         line-height: var(--dropdown-sublevel-height);
         background-color: var(--dropdown-background-color);
+        border-radius: 1px;
       }
 
       .sublevel.dropdown:hover {
         background-color: var(--dropdown-hover-background-color);
+        color: var(--on-p-color, #111111);
       }
 
       .level.dropdown {
@@ -155,10 +158,12 @@ export class MvMenu extends LitElement {
         display: flex;
         align-items: center;
         background-color: var(--dropdown-background-color);
+        box-shadow: 0 0px 25px 5px rgba(205,210,214,0.8);
       }
 
       .level.dropdown:hover {
         background-color: var(--dropdown-hover-background-color);
+        color: var(--on-p-color, #111111);
       }
 
       .level.dropdown > ul {
@@ -224,11 +229,11 @@ export class MvMenu extends LitElement {
         cursor: default;
         box-shadow: 0 0 15px 1px rgba(151, 156, 163, 1);
         border-radius: 5px;
+        color: var(--notification-color);
       }
 
       .title {
         font-size: --font-size-xl;
-        color: var(--notification-title-color);
         font-weight: 500;
         position: absolute;
         left: 30px;
@@ -278,7 +283,7 @@ export class MvMenu extends LitElement {
       
       .level.default .submenu {
         margin-top: 22px;
-        margin-left: 193px;
+        margin-left: 194px;
         min-width: 210px !important;
         max-width: 210px;
       }
