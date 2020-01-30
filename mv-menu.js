@@ -16,7 +16,11 @@ export class MvMenu extends LitElement {
       type: { type: String, attribute: true },
       parentType: { type: String, attribute: true },
       title: { type: String, attribute: true },
-      showFooter: { type: Boolean, attribute: true }
+      showFooter: { type: Boolean, attribute: true },
+
+      //  valid theme values are: "light", "dark"
+      //    default: "dark"
+      theme: { type: String, attribute: true }
     };
   }
 
@@ -26,45 +30,61 @@ export class MvMenu extends LitElement {
         font-family: var(--font-family, Arial);
         font-size: var(--font-size-m, 10pt);
         line-height: var(--line-height-s, 1.625);
-        background: var(--p-color, #ffffff);
-        --border: var(--mv-menu-border, none);
+        --border: var(--mv-menu-border, 1px solid #344955);
+        
+        --light-background: var(--mv-menu-light-background, #FFFFFF);
+        --hover-light-background: var(--mv-menu-hover-light-background, #F0FFF0);
+        --light-color: var(--mv-menu-light-color, #80828C);
+        --dark-background: var(--mv-menu-dark-background, #344955);
+        --hover-dark-background: var(--mv-menu-hover-dark-background, #232F34);
+        --dark-color: var(--mv-menu-dark-color, rgb(202, 213, 218));
         
         --dropdown-sublevel-height: var(--mv-dropdown-sublevel-height, 41px);
         --dropdown-sublevel-width: var(--mv-dropdown-sublevel-width, 198px);
-        --dropdown-background-color: var(--mv-dropdown-background-color, #3F4753);
-        --dropdown-hover-background-color: var(--mv-dropdown-hover-background-color, #353F4D);
         --dropdown-level-height: var(--mv-dropdown-level-height, 95px);
         --dropdown-level-width: var(--mv-dropdown-level-width, 265px);
         --dropdown-sublevel-position-top: var(--mv-dropdown-sublevel-position-top, 100px);
         --dropdown-sublevel-position-left: var(--mv-dropdown-sublevel-position-left, 0px);
+        --dropdown-dark-background: var(--mv-menu-dropdown-dark-background, #3F4753);
+        --dropdown-hover-dark-background: var(--mv-menu-dropdown-hover-dark-background, #353F4D);
+        --dropdown-light-background: var(--mv-menu-dropdown-light-background, #FFFFFF);
+        --dropdown-hover-light-background: var(--mv-menu-dropdown-hover-light-background, #F0FFF0);
         
         --notification-level-size: var(--mv-notification-level-size, 48px);
-        --notification-button-background-color: var(--mv-notification-button-background-color, #3F4753);
-        --notification-button-hover-background-color: var(--mv-notification-button-hover-background-color, #353F4D);
         --notification-sublevel-height: var(--mv-notification-sublevel-height, 400px);
         --notification-sublevel-width: var(--mv-notification-sublevel-width, 756px);
         --notification-sublevel-position-top: var(--mv-notification-sublevel-position-top, 80px);
         --notification-sublevel-position-left: var(--mv-notification-sublevel-position-left, -355px);
-        --notification-color: var(--mv-notification-color, #FFFFFF);
-        --notification-background-color: var(--mv-notification-background-color, #3F4753);
+        --notification-dark-background: var(--mv-menu-notification-dark-background, #3F4753);
+        --notification-button-dark-background: var(--mv-menu-notification-button-dark-background, #3F4753);
+        --notification-button-hover-dark-background: var(--mv-menu-notification-button-hover-dark-background, #353F4D);
+        --notification-menu-dark-background: var(--mv-menu-notification-menu-dark-background, #3F4753);
+        --notification-dark-color: var(--mv-menu-notification-dark-color, #FFFFFF);
+        --notification-light-background: var(--mv-menu-notification-light-background, #FFFFFF);
+        --notification-button-light-background: var(--mv-menu-notification-button-light-background, #FFFFFF);
+        --notification-button-hover-light-background: var(--mv-menu-notification-button-hover-light-background, #F0FFF0);
+        --notification-menu-light-background: var(--mv-menu-notification-menu-light-background, #FFFFFF);
+        --notification-light-color: var(--mv-menu-notification-light-color, #80828C);
       }
 
       ul {
         margin: 0px;
         list-style: none;
         border: var(--border);
+        background-color: var(--background-color);
       }
 
       li {
         padding: 1em;
         display: block;
-        color: var(--on-p-color, #000000);
+        color: var(--color);
         text-decoration: none;
+        background-color: var(--background-color);
       }
 
       li:hover {
-        background: var(--pd-color, #eeeeee);
-        color: var(--on-pd-color, #111111);
+        background: var(--hover-background-color);
+        color: var(--color);
       }
 
       .menu {
@@ -92,7 +112,7 @@ export class MvMenu extends LitElement {
         flex-flow: column wrap;
         min-width: 100px;
         position: absolute;
-        background: var(--pd-color, #eeeeee);
+        background: var(--hover-background-color);
 
         @media(max-width: 450px) {
           position: static;
@@ -115,8 +135,8 @@ export class MvMenu extends LitElement {
       .level2 {
         top: 0px;
         left: 100%;
-        background: var(--pl-color, #eeeeee);
-        color: var(--on-pl-color, #111111);
+        background: var(--background-color);
+        color: var(--color);
       }
 
       .level2:hover {
@@ -132,7 +152,11 @@ export class MvMenu extends LitElement {
       .text{
         padding-right: 1em;
       }
-
+      
+      ul.dropdown {
+        border: none;
+      }
+      
       .sublevel.dropdown {
         height: var(--dropdown-sublevel-height);
         padding: 0 10px;
@@ -143,7 +167,7 @@ export class MvMenu extends LitElement {
 
       .sublevel.dropdown:hover {
         background-color: var(--dropdown-hover-background-color);
-        color: var(--on-p-color, #111111);
+        color: var(--color);
       }
 
       .level.dropdown {
@@ -163,7 +187,7 @@ export class MvMenu extends LitElement {
 
       .level.dropdown:hover {
         background-color: var(--dropdown-hover-background-color);
-        color: var(--on-p-color, #111111);
+        color: var(--color);
       }
 
       .level.dropdown > ul {
@@ -177,7 +201,11 @@ export class MvMenu extends LitElement {
         top: var(--dropdown-sublevel-position-top);
         left: var(--dropdown-sublevel-position-left);
       }
-
+      
+      ul.notification {
+        border: none;
+      }
+      
       .level.notification {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -217,12 +245,17 @@ export class MvMenu extends LitElement {
         position: absolute;
         top: var(--notification-sublevel-position-top);
         left: var(--notification-sublevel-position-left);
+        border: none;
       }
 
       .sublevel.notification {
         display: none;
       }
 
+      .menu.notification {
+        background-color: var(--notification-menu-background-color);
+      }
+      
       .wrap-notification {
         width: 100%;
         height: 100%;
@@ -291,6 +324,32 @@ export class MvMenu extends LitElement {
       .level1.default .submenu {
         margin-left: 0px;
       }
+      
+      .light {
+        --background-color: var(--light-background);
+        --hover-background-color: var(--hover-light-background);
+        --color: var(--light-color);
+        --dropdown-background-color: var(--dropdown-light-background);
+        --dropdown-hover-background-color: var(--dropdown-hover-light-background);
+        --notification-button-background-color: var(--notification-button-light-background);
+        --notification-button-hover-background-color: var(--notification-button-hover-light-background);
+        --notification-background-color: var(--notification-light-background);
+        --notification-menu-background-color: var(--notification-menu-light-background);
+        --notification-color: var(--notification-light-color);
+      }
+      
+      .dark {
+        --background-color: var(--dark-background);
+        --hover-background-color: var(--hover-dark-background);
+        --color: var(--dark-color);
+        --dropdown-background-color: var(--dropdown-dark-background);
+        --dropdown-hover-background-color: var(--dropdown-hover-dark-background);
+        --notification-button-background-color: var(--notification-button-dark-background);
+        --notification-button-hover-background-color: var(--notification-button-hover-dark-background);
+        --notification-background-color: var(--notification-dark-background);
+        --notification-menu-background-color: var(--notification-menu-dark-background)
+        --notification-color: var(--notification-dark-color);
+      }
   `;
   }
 
@@ -299,6 +358,7 @@ export class MvMenu extends LitElement {
     this.type = "default";
     this.title = "Notifications";
     this.showFooter = true;
+    this.theme = "dark";
   }
 
   render() {
@@ -309,7 +369,7 @@ export class MvMenu extends LitElement {
     if (this.isRoot) {
       return html`
         <mv-click-away @clicked-away="${this.handleClickAway}">
-          <ul class="menu"><slot></slot></ul>
+          <ul class="menu ${this.type} ${this.theme}"><slot></slot></ul>
         </mv-click-away>
       `;
     } else if (this.hasChildren) {
@@ -369,12 +429,14 @@ export class MvMenu extends LitElement {
     this.submenus = [];
     this.hasChildren = false;
     this.isRoot = this.text === undefined;
+    this.parentType = this.type;
     if (!this.isRoot) {
       this.level = this.parentNode.registerChild(this);
       this.hasChildren = this.children.length > 0;
       this.isOpen = false;
     }
     if (this.hasChildren) {
+      this.type = this.parentNode.parentType;
       this.parentType = this.type;
     }
     if (!this.isRoot && !this.hasChildren) {

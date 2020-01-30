@@ -30,8 +30,8 @@ default, dropdown, and notification
 ## Sample usage
 - dropdown
 ```html
-<mv-menu>      
-   <mv-menu text="" type="dropdown">
+<mv-menu type="dropdown">      
+   <mv-menu text="">
        <span slot="title">                            // title slot
            <div class="dropdown">
                <div class="avatar">ma</div>
@@ -50,8 +50,8 @@ default, dropdown, and notification
 
 - notification
 ```html
-<mv-menu>
-   <mv-menu text="" type="notification" .showFooter="${false}">  // hide notification's footer
+<mv-menu type="notification">
+   <mv-menu text="" .showFooter="${false}">  // hide notification's footer
        <span slot="title">                                       // title, footer, body slots
            <mv-fa icon="bell"></mv-fa>
        </span>
