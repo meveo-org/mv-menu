@@ -350,7 +350,7 @@ export class MvMenu extends LitElement {
         --notification-menu-background-color: var(--notification-menu-dark-background)
         --notification-color: var(--notification-dark-color);
       }
-  `;
+    `;
   }
 
   constructor() {
