@@ -78,9 +78,9 @@ export class MvMenuDemo extends LitElement {
         width: 120px;
         margin-left: 10px;
         border:2px solid red;
-        -moz-border-radius:8px;
-        -webkit-border-radius:8px;	
-        border-radius:8px;
+        -moz-border-radius: 8px;
+        -webkit-border-radius: 8px;	
+        border-radius: 8px;
         color: #818181;
       }
       
@@ -97,15 +97,16 @@ export class MvMenuDemo extends LitElement {
   }
 
   render() {
+    const { theme } = this;
     return html`
       <fieldset>
         <legend>Theme</legend>
-        <label><input type="radio" name="theme" value="light" @change="${this.radioChange}" />Light</label>
-        <label><input type="radio" name="theme" value="dark" checked @change="${this.radioChange}" />Dark</label>
+        <label><input type="radio" name="theme" value="light" @change="${this.changeTheme}" />Light</label>
+        <label><input type="radio" name="theme" value="dark" checked @change="${this.changeTheme}" />Dark</label>
       </fieldset>
       <div class="wrap-menu">
         <div>
-          <mv-menu .theme="${this.theme}">
+          <mv-menu .theme="${theme}">
             <mv-menu text="File">
               <mv-menu text="New File" shortcut="Ctrl+Shift+N"></mv-menu>
               <mv-menu text="Open File" shortcut="Ctrl+O"></mv-menu>
@@ -147,7 +148,7 @@ export class MvMenuDemo extends LitElement {
         </div>
         
         <div>
-          <mv-menu type="dropdown" .theme="${this.theme}">
+          <mv-menu type="dropdown" .theme="${theme}">
             <mv-menu text="">
               <span slot="title">
                 <div class="dropdown">
@@ -163,8 +164,8 @@ export class MvMenuDemo extends LitElement {
           </mv-menu>
         </div>
         
-        <div class="notification-menu ${this.theme}">
-          <mv-menu type="notification" .theme="${this.theme}">
+        <div class="notification-menu ${theme}">
+          <mv-menu type="notification" .theme="${theme}">
             <mv-menu text="">
               <span slot="title">
                 <mv-fa icon="bell"></mv-fa>
@@ -185,13 +186,9 @@ export class MvMenuDemo extends LitElement {
     window.open("https://github.com/meveo-frontend", "_blank");
   }
 
-  radioChange = originalEvent => {
+  changeTheme = originalEvent => {
     const { target: { value } } = originalEvent;
-    if (value === "light") {
-      this.theme = "light";
-    } else {
-      this.theme = "dark";
-    }
+    this.theme = value;
   };
 }
 
