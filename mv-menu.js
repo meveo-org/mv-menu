@@ -31,14 +31,14 @@ export class MvMenu extends LitElement {
         font-size: var(--font-size-m, 10pt);
         line-height: var(--line-height-s, 1.625);
         --border: var(--mv-menu-border, 1px solid #344955);
-        
+
         --light-background: var(--mv-menu-light-background, #FFFFFF);
         --hover-light-background: var(--mv-menu-hover-light-background, #F0FFF0);
         --light-color: var(--mv-menu-light-color, #80828C);
         --dark-background: var(--mv-menu-dark-background, #344955);
         --hover-dark-background: var(--mv-menu-hover-dark-background, #232F34);
         --dark-color: var(--mv-menu-dark-color, rgb(202, 213, 218));
-        
+
         --dropdown-sublevel-height: var(--mv-dropdown-sublevel-height, 41px);
         --dropdown-sublevel-width: var(--mv-dropdown-sublevel-width, 198px);
         --dropdown-level-height: var(--mv-dropdown-level-height, 95px);
@@ -49,7 +49,7 @@ export class MvMenu extends LitElement {
         --dropdown-hover-dark-background: var(--mv-menu-dropdown-hover-dark-background, #353F4D);
         --dropdown-light-background: var(--mv-menu-dropdown-light-background, #FFFFFF);
         --dropdown-hover-light-background: var(--mv-menu-dropdown-hover-light-background, #F0FFF0);
-        
+
         --notification-level-size: var(--mv-notification-level-size, 48px);
         --notification-sublevel-height: var(--mv-notification-sublevel-height, 400px);
         --notification-sublevel-width: var(--mv-notification-sublevel-width, 756px);
@@ -65,6 +65,7 @@ export class MvMenu extends LitElement {
         --notification-button-hover-light-background: var(--mv-menu-notification-button-hover-light-background, #F0FFF0);
         --notification-menu-light-background: var(--mv-menu-notification-menu-light-background, #FFFFFF);
         --notification-light-color: var(--mv-menu-notification-light-color, #80828C);
+        --level-dropdown-box-shadow: var(--mv-level-dropdown-box-shadow, 0 0px 25px 5px rgba(205,210,214,0.8));
       }
 
       ul {
@@ -152,11 +153,11 @@ export class MvMenu extends LitElement {
       .text{
         padding-right: 1em;
       }
-      
+
       ul.dropdown {
         border: none;
       }
-      
+
       .sublevel.dropdown {
         height: var(--dropdown-sublevel-height);
         padding: 0 10px;
@@ -182,7 +183,7 @@ export class MvMenu extends LitElement {
         display: flex;
         align-items: center;
         background-color: var(--dropdown-background-color);
-        box-shadow: 0 0px 25px 5px rgba(205,210,214,0.8);
+        box-shadow: var(--level-dropdown-box-shadow);
       }
 
       .level.dropdown:hover {
@@ -201,11 +202,11 @@ export class MvMenu extends LitElement {
         top: var(--dropdown-sublevel-position-top);
         left: var(--dropdown-sublevel-position-left);
       }
-      
+
       ul.notification {
         border: none;
       }
-      
+
       .level.notification {
         box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -255,7 +256,7 @@ export class MvMenu extends LitElement {
       .menu.notification {
         background-color: var(--notification-menu-background-color);
       }
-      
+
       .wrap-notification {
         width: 100%;
         height: 100%;
@@ -313,18 +314,18 @@ export class MvMenu extends LitElement {
         position: relative;
         border-radius: 0;
       }
-      
+
       .level.default .submenu {
         margin-top: 22px;
         margin-left: 194px;
         min-width: 210px !important;
         max-width: 210px;
       }
-      
+
       .level1.default .submenu {
         margin-left: 0px;
       }
-      
+
       .light {
         --background-color: var(--light-background);
         --hover-background-color: var(--hover-light-background);
@@ -337,7 +338,7 @@ export class MvMenu extends LitElement {
         --notification-menu-background-color: var(--notification-menu-light-background);
         --notification-color: var(--notification-light-color);
       }
-      
+
       .dark {
         --background-color: var(--dark-background);
         --hover-background-color: var(--hover-dark-background);
