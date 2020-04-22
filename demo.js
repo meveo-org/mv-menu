@@ -1,12 +1,11 @@
 import { LitElement, html, css } from "lit-element";
 import "./mv-menu.js";
-import "mv-font-awesome";
 
 export class MvMenuDemo extends LitElement {
   static get properties() {
     return {
       value: { type: String, attribute: true },
-      theme: { type: String, attribute: true }
+      theme: { type: String, attribute: true },
     };
   }
 
@@ -16,14 +15,14 @@ export class MvMenuDemo extends LitElement {
         font-family: var(--font-family, Arial);
         font-size: var(--font-size-m, 10pt);
       }
-      
-      .wrap-menu {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 1600px;
+
+      .main {
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-row-gap: 20px;
+        margin-top: 40px;
       }
-      
+
       .avatar {
         line-height: 48px;
         text-align: center;
@@ -34,56 +33,35 @@ export class MvMenuDemo extends LitElement {
         height: 48px;
         background-color: rgb(52, 152, 219);
       }
-      
+
       .dropdown {
         display: flex;
         align-items: center;
         justify-content: center;
       }
-      
+
       .title {
         padding: 10px;
       }
-      
-      .notification-menu {
-        height: 95px;
-        width: 756px;
-        background: #3F4753;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0px 25px 5px rgba(205,210,214,0.8);
+
+      .default-menu {
+        width: 100%;
+        box-shadow: 0 0px 25px 5px rgba(205, 210, 214, 0.8);
       }
-      
-      .notification-menu.light {
-        background-color: #FFFFFF;
-      }
-      
-      .notification-menu.light mv-fa[icon="bell"] {
-        color: #80828C;
-      }
-      
-      .footer {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-      
-      fieldset > label, label > input {
+
+      fieldset > label,
+      label > input {
         cursor: pointer;
       }
-      
+
       fieldset {
         width: 120px;
         margin-left: 10px;
-        border:2px solid red;
-        -moz-border-radius: 8px;
-        -webkit-border-radius: 8px;	
+        border: 2px solid red;
         border-radius: 8px;
         color: #818181;
       }
-      
+
       legend {
         font-weight: 500;
         color: red;
@@ -93,7 +71,7 @@ export class MvMenuDemo extends LitElement {
 
   constructor() {
     super();
-    this.theme = "dark";
+    this.theme = "light";
   }
 
   render() {
@@ -101,80 +79,97 @@ export class MvMenuDemo extends LitElement {
     return html`
       <fieldset>
         <legend>Theme</legend>
-        <label><input type="radio" name="theme" value="light" @change="${this.changeTheme}" />Light</label>
-        <label><input type="radio" name="theme" value="dark" checked @change="${this.changeTheme}" />Dark</label>
+        <label>
+          <input
+            type="radio"
+            name="theme"
+            value="light"
+            ?checked="${this.theme === "light"}"
+            @change="${this.changeTheme}"
+          />Light
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="theme"
+            value="dark"
+            ?checked="${this.theme === "dark"}"
+            @change="${this.changeTheme}"
+          />Dark
+        </label>
       </fieldset>
-      <div class="wrap-menu">
-        <div>
+
+      <div class="main">
+        <h3>Default Menu</h3>
+        <div class="default-menu ${theme}">
           <mv-menu .theme="${theme}">
-            <mv-menu text="File">
-              <mv-menu text="New File" shortcut="Ctrl+Shift+N"></mv-menu>
-              <mv-menu text="Open File" shortcut="Ctrl+O"></mv-menu>
-              <mv-menu text="Save">
-                <mv-menu text="Save File" shortcut="Ctrl+S"></mv-menu>
-                <mv-menu text="Auto Save" checked=true disabled=true></mv-menu>
-              </mv-menu>
-              <mv-menu text="-"></mv-menu>
-            </mv-menu>
-            <mv-menu text="Edit">
-              <mv-menu text="Undo" shortcut="Ctrl+U"  disabled=true action="alert('Undo')"></mv-menu>
-              <mv-menu text="Redo" shortcut="Ctrl+Y"  disabled=true action="alert('Redo')"></mv-menu>
-              <mv-menu text="-"></mv-menu>
-              <mv-menu text="Cut" shortcut="Ctrl+X"  action="alert('Cut')"></mv-menu>
-              <mv-menu text="Copy" shortcut="Ctrl+C"  action="alert('Copy')"></mv-menu>
-              <mv-menu text="Paste" shortcut="Ctrl+V" action="alert('Paste')"></mv-menu>
-              <mv-menu text="-"></mv-menu>
-              <mv-menu text="Align">
-                <mv-menu text="Left Align"></mv-menu>
-                <mv-menu text="Center"></mv-menu>
-                <mv-menu text="Right Align"></mv-menu>
-                <mv-menu text="-"></mv-menu>
-                <mv-menu text="Top Align"></mv-menu>
-                <mv-menu text="Middle"></mv-menu>
-                <mv-menu text="Bottom Align"></mv-menu>
-              </mv-menu>
-              <mv-menu text="-"></mv-menu>
-              <mv-menu text="Distribute">
-                <mv-menu text="Horizontal"></mv-menu>
-                <mv-menu text="Vertical"></mv-menu>
+            <mv-menu trigger label="File">
+              <mv-menu item label="New File" shortcut="Ctrl+Shift+N"></mv-menu>
+              <mv-menu item label="Open File" shortcut="Ctrl+O"></mv-menu>
+              <mv-menu group label="Save">
+                <mv-menu item label="Save File" shortcut="Ctrl+S"></mv-menu>
+                <mv-menu
+                  item
+                  label="Auto Save"
+                  ?checked="${true}"
+                  ?disabled="${true}"
+                ></mv-menu>
               </mv-menu>
             </mv-menu>
-            <mv-menu text="Help">
-              <mv-menu text="Welcome"></mv-menu>
-              <mv-menu text="Help"></mv-menu>
-              <mv-menu text="About"></mv-menu>
+            <mv-menu trigger label="Edit">
+              <mv-menu
+                item
+                label="Undo"
+                shortcut="Ctrl+U"
+                ?disabled="${true}"
+                action="alert('Undo')"
+              ></mv-menu>
+              <mv-menu
+                item
+                label="Redo"
+                shortcut="Ctrl+Y"
+                ?disabled="${true}"
+                action="alert('Redo')"
+              ></mv-menu>
+              <mv-menu separator></mv-menu>
+              <mv-menu
+                item
+                label="Cut"
+                shortcut="Ctrl+X"
+                action="alert('Cut')"
+              ></mv-menu>
+              <mv-menu
+                item
+                label="Copy"
+                shortcut="Ctrl+C"
+                action="alert('Copy')"
+              ></mv-menu>
+              <mv-menu
+                item
+                label="Paste"
+                shortcut="Ctrl+V"
+                action="alert('Paste')"
+              ></mv-menu>
+              <mv-menu separator></mv-menu>
+              <mv-menu group label="Align">
+                <mv-menu item label="Left Align"></mv-menu>
+                <mv-menu item label="Center"></mv-menu>
+                <mv-menu item label="Right Align"></mv-menu>
+                <mv-menu separator></mv-menu>
+                <mv-menu item label="Top Align"></mv-menu>
+                <mv-menu item label="Middle"></mv-menu>
+                <mv-menu item label="Bottom Align"></mv-menu>
+              </mv-menu>
+              <mv-menu separator></mv-menu>
+              <mv-menu group label="Justify">
+                <mv-menu item label="Horizontal"></mv-menu>
+                <mv-menu item label="Vertical"></mv-menu>
+              </mv-menu>
             </mv-menu>
-          </mv-menu>
-        </div>
-        
-        <div>
-          <mv-menu type="dropdown" .theme="${theme}">
-            <mv-menu text="">
-              <span slot="title">
-                <div class="dropdown">
-                  <div class="avatar">ma</div>
-                  <div class="title">meveo.admin</div>
-                  <mv-fa icon="caret-down"></mv-fa>
-                </div>
-              </span>
-              <mv-menu text="Profile Setttings" @submenu-clicked="${this
-                .clickLink}"></mv-menu>
-              <mv-menu text="Log Out"></mv-menu>
-            </mv-menu>
-          </mv-menu>
-        </div>
-        
-        <div class="notification-menu ${theme}">
-          <mv-menu type="notification" .theme="${theme}">
-            <mv-menu text="">
-              <span slot="title">
-                <mv-fa icon="bell"></mv-fa>
-              </span>
-              <span slot="footer">
-                <span class="footer">View all</span>
-              </span>
-              <mv-menu text="New File" shortcut="Ctrl+Shift+N" action="alert('Undo')"></mv-menu>
-              <mv-menu text="Log Out"></mv-menu>
+            <mv-menu trigger label="Help">
+              <mv-menu item label="Welcome"></mv-menu>
+              <mv-menu item label="Help"></mv-menu>
+              <mv-menu item label="About"></mv-menu>
             </mv-menu>
           </mv-menu>
         </div>
@@ -182,13 +177,8 @@ export class MvMenuDemo extends LitElement {
     `;
   }
 
-  clickLink() {
-    window.open("https://github.com/meveo-frontend", "_blank");
-  }
-
-  changeTheme = originalEvent => {
-    const { target: { value } } = originalEvent;
-    this.theme = value;
+  changeTheme = (event) => {
+    this.theme = event.target.value;
   };
 }
 
