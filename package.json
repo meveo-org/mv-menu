@@ -1,0 +1,25 @@
+{
+  "name": "@meveo-org/mv-menu",
+  "version": "1.0.0",
+  "description": "MvMenu is a Meveo menu component (based on lit-element) that provides menu with sub menus.",
+  "main": "mv-menu.js",
+  "scripts": {
+    "serve": "es-dev-server --node-resolve --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meveo-org/mv-menu.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meveo-org/mv-menu/issues"
+  },
+  "homepage": "https://github.com/meveo-org/mv-menu#readme",
+  "dependencies": {
+    "@meveo-org/mv-click-away": "^1.0.0"
+  },
+  "devDependencies": {
+    "es-dev-server": "^1.46.1"
+  }
+}
