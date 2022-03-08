@@ -1,6 +1,6 @@
-import { LitElement, html, css } from "lit-element";
+import { LitElement, html, css } from "lit";
 import "./mv-menu.js";
-import "mv-font-awesome";
+import "@meveo-org/mv-font-awesome";
 
 export class MvMenuDemo extends LitElement {
   static get properties() {
